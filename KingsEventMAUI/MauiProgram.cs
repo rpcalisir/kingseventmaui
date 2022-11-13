@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using KingsEventMAUI.Services;
+using KingsEventMAUI.ViewModels;
+using KingsEventMAUI.Views;
+using Microsoft.Extensions.Logging;
 
 namespace KingsEventMAUI
 {
@@ -18,6 +21,10 @@ namespace KingsEventMAUI
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<EventFlyerPage>();
+            builder.Services.AddSingleton<EventFlyerService>();
 
             return builder.Build();
         }
