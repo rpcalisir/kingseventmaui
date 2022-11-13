@@ -115,6 +115,9 @@ namespace KingsEventMAUI.ViewModels
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(_webApiKey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(EmailAddress, Password);
                 string token = auth.FirebaseToken;
+                if (token!=null)
+                    await App.Current.MainPage.DisplayAlert("Alert", "Registration is successfully completed!", "OK");
+                await this._navigation.PopAsync();
             }
             catch (Exception ex)
             {
