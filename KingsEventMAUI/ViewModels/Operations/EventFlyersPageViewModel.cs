@@ -7,21 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingsEventMAUI.ViewModels
+namespace KingsEventMAUI.ViewModels.Operations
 {
-    public class EventFlyerViewModel : BaseViewModel
+    public partial class EventFlyersPageViewModel : BaseViewModel
     {
+        #region Private Fields
         EventFlyerService eventFlyerService;
 
+        #endregion
+
+        #region Properties
         public ObservableCollection<EventFlyer> EventFlyers { get; } = new();
-        public EventFlyerViewModel(EventFlyerService eventFlyerService)
+
+        #endregion
+
+        #region Commands
+        #endregion
+
+        #region Public Methods
+        public EventFlyersPageViewModel(EventFlyerService eventFlyerService)
         {
-            Title = "EVENTS";
             this.eventFlyerService = eventFlyerService;
+            GetEventFlyersAsync();
         }
+        #endregion
 
-
-        async Task GetEventsAsync()
+        #region Private Implementation
+        async Task GetEventFlyersAsync()
         {
             if (IsBusy)
                 return;
@@ -46,5 +58,6 @@ namespace KingsEventMAUI.ViewModels
                 IsBusy = false;
             }
         }
+        #endregion
     }
 }

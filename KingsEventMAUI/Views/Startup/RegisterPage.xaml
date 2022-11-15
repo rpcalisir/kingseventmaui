@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KingsEventMAUI.Views.RegisterPage"
-             NavigationPage.HasNavigationBar="False"
-             xmlns:views="clr-namespace:KingsEventMAUI.Views"
-             xmlns:viewmodels="clr-namespace:KingsEventMAUI.ViewModels"
-             x:DataType="viewmodels:RegisterViewModel"
-             Title="{Binding Title}"
-             >
+             x:Class="KingsEventMAUI.Views.Startup.RegisterPage"
+             Title="RegisterPage">
+
     <ContentPage.Content>
         <Grid
             BackgroundColor="#1C375C"
@@ -113,7 +109,7 @@
                     <Button
                         Grid.Row="8"
                         BackgroundColor="#1C375C"
-                        Command="{Binding RegisterUserCommand}"
+                        Command="{Binding UserRegisterCommand}"
                         CornerRadius="20"
                         Text="Register using Email" />
                 </Grid>
