@@ -5,6 +5,7 @@ using KingsEventMAUI.Controls;
 using KingsEventMAUI.Models;
 using KingsEventMAUI.Views.Dashboard;
 using KingsEventMAUI.Views.Startup;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace KingsEventMAUI.ViewModels.Startup
         [ObservableProperty]
         private string _userPassword;
 
-        private const string _webApiKey = "AIzaSyDQjQb9X7a-fIQG58ZTmFlYvOycw92p-0k";
+        //private const string _webApiKey = "AIzaSyDQjQb9X7a-fIQG58ZTmFlYvOycw92p-0k";
+        private readonly IServiceProvider serviceProvider;
         #endregion
 
         #region Properties
@@ -53,7 +55,9 @@ namespace KingsEventMAUI.ViewModels.Startup
         {
             if (!string.IsNullOrWhiteSpace(UserEmail) && !string.IsNullOrWhiteSpace(UserPassword))
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(_webApiKey));
+                //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(_webApiKey));
+
+                var authProvider = serviceProvider.GetService<FirebaseAuthProvider>();
                 try
                 {
                     var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserEmail, UserPassword);
@@ -123,8 +127,9 @@ namespace KingsEventMAUI.ViewModels.Startup
         #endregion
 
         #region Public Methods
-        public SignInPageViewModel()
+        public SignInPageViewModel(IServiceProvider serviceProvider)
         {
+            this.serviceProvider = serviceProvider;
         }
         #endregion
 

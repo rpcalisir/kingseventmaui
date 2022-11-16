@@ -1,4 +1,5 @@
-﻿using KingsEventMAUI.Services;
+﻿using Firebase.Auth;
+using KingsEventMAUI.Services;
 using KingsEventMAUI.ViewModels;
 using KingsEventMAUI.ViewModels.Dashboard;
 using KingsEventMAUI.ViewModels.Operations;
@@ -7,7 +8,9 @@ using KingsEventMAUI.Views;
 using KingsEventMAUI.Views.Dashboard;
 using KingsEventMAUI.Views.Operations;
 using KingsEventMAUI.Views.Startup;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace KingsEventMAUI
 {
@@ -24,8 +27,19 @@ namespace KingsEventMAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            var executingAssembly = Assembly.GetExecutingAssembly();
+
+            using var stream = executingAssembly.GetManifestResourceStream("KingsEventMAUI.appsettings.json");
+
+            var config = new ConfigurationBuilder()
+            .AddJsonStream(stream)
+            .Build();
+
+            builder.Configuration.AddConfiguration(config);
+
+
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             //Views
             builder.Services.AddSingleton<LoadingPage>();
@@ -43,6 +57,13 @@ namespace KingsEventMAUI
 
             //Services
             builder.Services.AddSingleton<EventFlyerService>();
+
+            string apiKey = config.GetSection("FIREBASE_API_KEY").Value;
+
+            //Firebase
+            builder.Services.AddSingleton(new FirebaseAuthProvider(new FirebaseConfig(apiKey)));
+
+
 
             return builder.Build();
         }
