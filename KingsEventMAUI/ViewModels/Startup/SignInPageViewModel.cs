@@ -23,7 +23,6 @@ namespace KingsEventMAUI.ViewModels.Startup
         [ObservableProperty]
         private string _userPassword;
 
-        //private const string _webApiKey = "AIzaSyDQjQb9X7a-fIQG58ZTmFlYvOycw92p-0k";
         private readonly IServiceProvider serviceProvider;
         #endregion
 
@@ -88,10 +87,22 @@ namespace KingsEventMAUI.ViewModels.Startup
                 }
                 catch (FirebaseAuthException ex)
                 {
-                    if (ex.Reason.Equals(Firebase.Auth.AuthErrorReason.InvalidEmailAddress))
+                    if (ex.Reason.Equals(AuthErrorReason.InvalidEmailAddress))
                         await App.Current.MainPage.DisplayAlert("ERROR", "Invalid Email!", "OK");
-                    else if(ex.Reason.Equals(Firebase.Auth.AuthErrorReason.WrongPassword))
+                    else if(ex.Reason.Equals(AuthErrorReason.WrongPassword))
                         await App.Current.MainPage.DisplayAlert("ERROR", "Wrong Password!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.UnknownEmailAddress))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "Unknown Email Address!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.UserNotFound))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "User not found!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.LoginCredentialsTooOld))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "Login Credentials TooOld!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.TooManyAttemptsTryLater))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "Too many attempts, try later!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.OperationNotAllowed))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "Operation is not allowed!", "OK");
+                    else if (ex.Reason.Equals(AuthErrorReason.SystemError))
+                        await App.Current.MainPage.DisplayAlert("ERROR", "System Error!", "OK");
                     else
                         await App.Current.MainPage.DisplayAlert("ERROR", "Could not connect to server!", "OK");
                 }

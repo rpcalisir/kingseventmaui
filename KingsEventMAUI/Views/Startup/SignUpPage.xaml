@@ -91,7 +91,15 @@
                         Text="{Binding Password}"
                         VerticalOptions="FillAndExpand" />
 
-                    <StackLayout Grid.Row="7" Orientation="Horizontal">
+                    <Entry
+                        Grid.Row="7"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Confirm Password"
+                        Text="{Binding ConfirmPassword}"
+                        VerticalOptions="FillAndExpand" />
+
+                    <StackLayout Grid.Row="8" Orientation="Horizontal">
                         <Switch
                         IsToggled="False"
                         HorizontalOptions="Start"
@@ -106,7 +114,7 @@
 
 
                     <Button
-                        Grid.Row="8"
+                        Grid.Row="9"
                         BackgroundColor="#1C375C"
                         Command="{Binding UserSignUpCommand}"
                         CornerRadius="20"
