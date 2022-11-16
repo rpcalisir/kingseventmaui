@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
+using KingsEventMAUI.Views.Dashboard;
 using KingsEventMAUI.Views.Startup;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KingsEventMAUI.ViewModels.Startup
 {
-    public partial class RegisterPageViewModel : BaseViewModel
+    public partial class SignUpPageViewModel : BaseViewModel
     {
         #region Private Fields
         [ObservableProperty]
@@ -36,23 +37,24 @@ namespace KingsEventMAUI.ViewModels.Startup
 
         #region Commands
         [RelayCommand]
-        async void UserRegister()
+        async void UserSignUp()
         {
-            //try
-            //{
-            //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(_webApiKey));
-            //    var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(EmailAddress, Password);
-            //    string token = auth.FirebaseToken;
-            //    if (token != null)
-            //        await App.Current.MainPage.DisplayAlert("Alert", "Registration is successfully completed!", "OK");
-            //    await this._navigation.PopAsync();
-            //}
-            //catch (Exception ex)
-            //{
-            //    await App.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
-            //}
+            try
+            {
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(_webApiKey));
+                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(EmailAddress, Password);
+                string token = auth.FirebaseToken;
+                if (token != null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Alert", "Registration is successfully completed!", "OK");
+                    await AppShell.Current.GoToAsync($"//{nameof(DashboardPage)}");
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+            }
 
-            await AppShell.Current.GoToAsync($"//{nameof(RegisterPage)}");
         }
         #endregion
 

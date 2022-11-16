@@ -27,8 +27,8 @@ namespace KingsEventMAUI.ViewModels.Operations
         #region Public Methods
         public EventFlyersPageViewModel(EventFlyerService eventFlyerService)
         {
-            this.eventFlyerService = eventFlyerService;
-            GetEventFlyersAsync();
+            Title = "EVENTS LIST";
+            //this.eventFlyerService = eventFlyerService;
         }
         #endregion
 

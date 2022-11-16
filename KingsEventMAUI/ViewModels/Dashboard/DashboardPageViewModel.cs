@@ -20,7 +20,7 @@ namespace KingsEventMAUI.ViewModels.Dashboard
         #region Public Methods
         public DashboardPageViewModel()
         {
-            Title = "Dashboard Page";
+            Title = "KINGS EVENT";
         }
         #endregion
 

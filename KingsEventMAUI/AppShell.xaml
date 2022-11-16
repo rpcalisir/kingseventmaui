@@ -5,18 +5,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:startupPages="clr-namespace:KingsEventMAUI.Views.Startup"
     xmlns:dashboardPages="clr-namespace:KingsEventMAUI.Views.Dashboard"
+    xmlns:operationsPages="clr-namespace:KingsEventMAUI.Views.Operations"
     >
 
-    <ShellContent
-        Title="Login Page"
-        ContentTemplate="{DataTemplate startupPages:LoginPage}"
-        Route="LoginPage" 
+    <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}"
+        Route="LoadingPage"
         />
 
-    <ShellContent
+    <ShellContent 
+        Title="Sign In Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:SignInPage}"
+        Route="SignInPage" 
+        />
+
+    <ShellContent 
+        Title="Sign Up Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:SignUpPage}"
+        Route="SignUpPage" 
+        />
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
         Title="KINGS EVENT"
         ContentTemplate="{DataTemplate dashboardPages:DashboardPage}"
         Route="DashboardPage" 
         />
 
+        <ShellContent
+        Title="EVENTS"
+        ContentTemplate="{DataTemplate operationsPages:EventFlyersPage}"
+        Route="EventFlyersPage" />
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Sign Out" Command="{Binding UserSignoutCommand}"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
 </Shell>
