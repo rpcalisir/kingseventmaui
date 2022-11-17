@@ -67,7 +67,6 @@ namespace KingsEventMAUI.ViewModels.Startup
                     {
                         Preferences.Remove(nameof(App.FreshFireBaseToken));
                     }
-
                     Preferences.Set(nameof(App.FreshFireBaseToken), serializedContent);
                     App.FreshFireBaseToken = serializedContent;
 
