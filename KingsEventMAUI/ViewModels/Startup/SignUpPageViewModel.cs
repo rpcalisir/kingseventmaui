@@ -118,7 +118,7 @@ namespace KingsEventMAUI.ViewModels.Startup
                 try
                 {
                     var authProvider = serviceProvider.GetService<FirebaseAuthProvider>();
-                    var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(EmailAddress, Password);
+                    var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(EmailAddress, Password, $"{Name} {SurName}");
                     string token = auth.FirebaseToken;
                     if (token != null)
                     {

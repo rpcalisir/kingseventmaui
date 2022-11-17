@@ -59,8 +59,11 @@ namespace KingsEventMAUI.ViewModels.Startup
                 var authProvider = serviceProvider.GetService<FirebaseAuthProvider>();
                 try
                 {
-                    var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserEmail, UserPassword);
-                    var content = await auth.GetFreshAuthAsync();
+                    var firebaseAuthLink = await authProvider.SignInWithEmailAndPasswordAsync(UserEmail, UserPassword);
+                    User user = firebaseAuthLink.User;
+                    var userFirstName = user.FirstName;
+
+                    var content = await firebaseAuthLink.GetFreshAuthAsync();
                     var serializedContent = JsonConvert.SerializeObject(content);
 
                     if (Preferences.ContainsKey(nameof(App.FreshFireBaseToken)))
@@ -72,8 +75,8 @@ namespace KingsEventMAUI.ViewModels.Startup
 
                     var userDetails = new SignedInUserInfo()
                     {
-                        SignedInUserEmail = UserEmail,
-                        SignedInUserPassword = UserPassword,
+                        SignedInUserName = user.DisplayName,
+                        SignedInUserEmail = user.Email
                     };
 
                     var userDetailsStr = JsonConvert.SerializeObject(userDetails);

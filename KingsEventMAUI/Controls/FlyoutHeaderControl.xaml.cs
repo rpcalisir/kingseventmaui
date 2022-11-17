@@ -8,8 +8,8 @@ public partial class FlyoutHeaderControl : StackLayout
 
         if (App.SignedInUserInfo != null)
         {
+            lblUserPassword.Text = App.SignedInUserInfo.SignedInUserName;
             lblUserEmail.Text = App.SignedInUserInfo.SignedInUserEmail;
-            lblUserPassword.Text = App.SignedInUserInfo.SignedInUserPassword;
         }
     }
 }

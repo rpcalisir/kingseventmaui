@@ -8,7 +8,8 @@ namespace KingsEventMAUI.Models
 {
     public class SignedInUserInfo
     {
+        public string SignedInUserName { get; set; }
+
         public string SignedInUserEmail { get; set; }
-        public string SignedInUserPassword { get; set; }
     }
 }
