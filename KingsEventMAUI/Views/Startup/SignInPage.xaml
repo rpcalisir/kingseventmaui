@@ -44,6 +44,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label
                         Grid.Row="0"
@@ -87,12 +88,20 @@
                         Command="{Binding GoToUserSignUpPageCommand}"
                         />
 
-                    <Label
+                    <Button
                         Grid.Row="6"
+                        BackgroundColor="#1C375C"
+                        CornerRadius="20"
+                        Text="Sign In with Phone Number" 
+                        Command="{Binding GoToPhoneSignInPageCommand}"
+                        />
+
+                    <Label
+                        Grid.Row="7"
                         HorizontalOptions="CenterAndExpand"
                         Text="or signin with" />
                     <StackLayout
-                        Grid.Row="7"
+                        Grid.Row="8"
                         HorizontalOptions="CenterAndExpand"
                         Orientation="Horizontal"
                         Spacing="40">
@@ -118,7 +127,7 @@
                             WidthRequest="30" />
                     </StackLayout>
                     <Label
-                        Grid.Row="8"
+                        Grid.Row="9"
                         FontAttributes="Bold"
                         HorizontalOptions="CenterAndExpand"
                         Text="Forget Password" />

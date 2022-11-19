@@ -47,6 +47,7 @@ namespace KingsEventMAUI
             builder.Services.AddSingleton<SignUpPage>();
             builder.Services.AddSingleton<DashboardPage>();
             builder.Services.AddSingleton<EventFlyersPage>();
+            builder.Services.AddSingleton<PhoneSignInPage>();
 
             //ViewModels
             builder.Services.AddSingleton<LoadingPageViewModel>();
@@ -54,6 +55,7 @@ namespace KingsEventMAUI
             builder.Services.AddSingleton<SignUpPageViewModel>();
             builder.Services.AddSingleton<DashboardPageViewModel>();
             builder.Services.AddSingleton<EventFlyersPageViewModel>();
+            builder.Services.AddSingleton<PhoneSignInPageViewModel>();
 
             //Services
             builder.Services.AddSingleton<EventFlyerService>();

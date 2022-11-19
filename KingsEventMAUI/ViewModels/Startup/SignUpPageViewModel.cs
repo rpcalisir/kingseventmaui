@@ -125,6 +125,7 @@ namespace KingsEventMAUI.ViewModels.Startup
                         await App.Current.MainPage.DisplayAlert("Alert", "Registration is successfully completed!", "OK");
                         await AppShell.Current.GoToAsync($"//{nameof(SignInPage)}");
                     }
+                    var authGoogle = authProvider.SignInWithGoogleIdTokenAsync(token);
                 }
                 catch (FirebaseAuthException ex)
                 {

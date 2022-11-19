@@ -137,6 +137,12 @@ namespace KingsEventMAUI.ViewModels.Startup
         {
             await AppShell.Current.GoToAsync(nameof(SignUpPage));
         }
+        
+        [RelayCommand]
+        async void GoToPhoneSignInPage()
+        {
+            await AppShell.Current.GoToAsync(nameof(PhoneSignInPage));
+        }
         #endregion
 
         #region Public Methods

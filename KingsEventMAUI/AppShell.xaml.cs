@@ -14,6 +14,7 @@ namespace KingsEventMAUI
 
             Routing.RegisterRoute(nameof(DashboardPage), typeof(DashboardPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
+            Routing.RegisterRoute(nameof(PhoneSignInPage), typeof(PhoneSignInPage));
         }
     }
 }
